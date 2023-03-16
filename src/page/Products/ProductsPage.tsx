@@ -1,7 +1,8 @@
-import style from "./Products.module.css";
-import { useProducts } from "./Products.hooks";
+import style from "./ProductsPage.module.css";
+import { useProducts } from "./ProductsPage.hooks";
+import { FC } from "react";
 
-export function ProductsPage() {
+export const ProductsPage: FC = () => {
   const { products, loading } = useProducts();
 
   return (
@@ -9,13 +10,17 @@ export function ProductsPage() {
       <header className={style.header}>header</header>
       <main className={style.main}>
         {loading && <p>Loading</p>}
-        {products?.map((product) => (
-          <p>
-            {product.id}:{product.title}
-          </p>
-        ))}
+        <ul>
+          {products?.map((product) => (
+            <a href={`/products/${product.id}`}>
+              <li>
+                {product.id}:{product.title}
+              </li>
+            </a>
+          ))}
+        </ul>
       </main>
       <footer className={style.footer}>footer</footer>
     </>
   );
-}
+};
