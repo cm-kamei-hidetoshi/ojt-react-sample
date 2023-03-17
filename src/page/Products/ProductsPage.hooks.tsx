@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useQuery } from "../../useQuery";
 type ProductsResponse = {
   products: Product[];
 };
@@ -17,22 +18,13 @@ type Product = {
   images: string[];
 };
 
+let data: Product[];
+
 export function useProducts() {
-  const [products, setProducts] = useState<Product[]>();
-  const [loading, setLoading] = useState<boolean>(true);
-
-  useEffect(() => {
-    fetch("https://dummyjson.com/products")
-      .then((res) => res.json())
-      .then((res) => {
-        setLoading(false);
-        setProducts(res.products);
-      });
-  }, []);
-
+  const { products } = useQuery<ProductsResponse>(
+    "https://dummyjson.com/products"
+  );
   return {
-    loading,
     products,
-    setProducts,
   };
 }

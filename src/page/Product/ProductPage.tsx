@@ -4,14 +4,10 @@ import { AppTemplate } from "../../componets/templates/AppTemplate/AppTemplate";
 import { useProduct } from "./ProductPage.hooks";
 
 export const ProductPage: FC = () => {
-  const { product, loading } = useProduct();
+  const { product } = useProduct();
 
   return (
-    <AppTemplate
-      loading={loading}
-      header={<Header />}
-      footer={<div>footer</div>}
-    >
+    <AppTemplate loading={false} header={<Header />} footer={<div>footer</div>}>
       {product && (
         <ul>
           <li>{product.title}</li>

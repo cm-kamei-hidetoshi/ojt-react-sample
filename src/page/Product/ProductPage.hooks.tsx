@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useQuery } from "../../useQuery";
 
 type Product = {
   id: number;
@@ -18,22 +19,11 @@ type Product = {
 type ProductParam = { productId: string };
 
 export function useProduct() {
-  const [product, setProduct] = useState<Product>();
-  const [loading, setLoading] = useState<boolean>(true);
-
   const { productId } = useParams<ProductParam>();
-
-  useEffect(() => {
-    fetch(`https://dummyjson.com/products/${productId}`)
-      .then((res) => res.json())
-      .then((res) => {
-        setLoading(false);
-        setProduct(res);
-      });
-  }, []);
-
+  const product = useQuery<Product>(
+    `https://dummyjson.com/products/${productId}`
+  );
   return {
-    loading,
     product,
   };
 }
