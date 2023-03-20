@@ -22,8 +22,6 @@ type Product = {
 };
 
 export function useProducts() {
-  const usecase = new ProductsUsecase(new ProductsRepository());
-
   const { products } = useQuery<ProductsResponse>(
     "https://dummyjson.com/products"
   );

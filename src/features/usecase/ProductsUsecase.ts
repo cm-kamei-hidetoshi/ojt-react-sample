@@ -1,15 +1,7 @@
-import { Product } from "../entity/Product";
-
-export interface IProductsRository {
-  fetchProducts(): Promise<{
-    products: Product[];
-  }>;
-}
+import { ProductsRepository } from "../repository/ProductsRepository";
 
 export class ProductsUsecase {
-  constructor(private repositroy: IProductsRository) {}
-
-  async fetchProducts() {
-    return this.repositroy.fetchProducts();
+  static async fetchProducts() {
+    return ProductsRepository.fetchProducts();
   }
 }

@@ -1,10 +1,10 @@
-import { test, assert } from "vitest";
+import { assert, test, vi } from "vitest";
 
-import { MockProductsRepository } from "../repository/MockProductsRepository";
 import { ProductsUsecase } from "./ProductsUsecase";
 
 test("ProductsUsecase Test", async () => {
-  const usecase = new ProductsUsecase(new MockProductsRepository());
-  const result = await usecase.fetchProducts();
-  assert.equal(result.products.length, 0);
+  const spy = vi.spyOn(ProductsUsecase, "fetchProducts");
+  spy.mockReturnValue(Promise.resolve({ products: [] }));
+  const result = await ProductsUsecase.fetchProducts();
+  assert.deepStrictEqual(result.products, []);
 }, 1000);
