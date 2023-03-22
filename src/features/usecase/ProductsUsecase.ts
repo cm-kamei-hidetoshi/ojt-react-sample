@@ -1,7 +1,7 @@
 import { ProductsRepository } from "../repository/ProductsRepository";
 
 export class ProductsUsecase {
-  static async fetchProducts() {
+  static fetchProducts() {
     return ProductsRepository.fetchProducts();
   }
 }

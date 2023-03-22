@@ -1,8 +1,6 @@
-import { useEffect, useState } from "react";
-import { ProductsRepository } from "../../features/repository/ProductsRepository";
-import { MockProductsRepository } from "../../features/repository/MockProductsRepository";
+import { useQuery } from "@tanstack/react-query";
+import { useEffect } from "react";
 import { ProductsUsecase } from "../../features/usecase/ProductsUsecase";
-import { useQuery } from "../../useQuery";
 type ProductsResponse = {
   products: Product[];
 };
@@ -22,10 +20,16 @@ type Product = {
 };
 
 export function useProducts() {
-  const { products } = useQuery<ProductsResponse>(
-    "https://dummyjson.com/products"
-  );
+  const { data } = useQuery({
+    queryKey: ["ProductsUsecase", "fetchProducts"],
+    queryFn: ProductsUsecase.fetchProducts,
+  });
+
+  useEffect(() => {
+    console.log("test");
+  }, []);
+
   return {
-    products,
+    products: data?.products ?? [],
   };
 }

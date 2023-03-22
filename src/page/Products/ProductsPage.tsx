@@ -1,8 +1,7 @@
-import style from "./ProductsPage.module.css";
-import { useProducts } from "./ProductsPage.hooks";
 import { FC } from "react";
-import { AppTemplate } from "../../componets/templates/AppTemplate/AppTemplate";
 import { Header } from "../../componets/Header";
+import { AppTemplate } from "../../componets/templates/AppTemplate/AppTemplate";
+import { useProducts } from "./ProductsPage.hooks";
 
 export const ProductsPage: FC = () => {
   const { products } = useProducts();
@@ -11,7 +10,7 @@ export const ProductsPage: FC = () => {
     <AppTemplate loading={false} header={<Header />} footer={<div>footer</div>}>
       <ul>
         {products?.map((product) => (
-          <a href={`/products/${product.id}`}>
+          <a href={`/products/${product.id}`} key={product.id}>
             <li>
               {product.id}:{product.title}
             </li>
