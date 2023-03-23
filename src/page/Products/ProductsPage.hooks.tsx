@@ -1,5 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
+import { useSetRecoilState } from "recoil";
+import { sideNaviState } from "../../features/atoms/side-navi-atom";
 import { ProductsUsecase } from "../../features/usecase/ProductsUsecase";
 type ProductsResponse = {
   products: Product[];
@@ -25,9 +27,10 @@ export function useProducts() {
     queryFn: ProductsUsecase.fetchProducts,
   });
 
+  const setSideNavi = useSetRecoilState(sideNaviState);
   useEffect(() => {
-    console.log("test");
-  }, []);
+    setSideNavi("PRODUCT");
+  }, [setSideNavi]);
 
   return {
     products: data?.products ?? [],

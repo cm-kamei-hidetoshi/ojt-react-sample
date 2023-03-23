@@ -5,19 +5,18 @@ import { useProduct } from "./ProductPage.hooks";
 
 export const ProductPage: FC = () => {
   const { product } = useProduct();
+  if (!product) {
+    return null;
+  }
 
   return (
-    <AppTemplate loading={false} header={<Header />} footer={<div>footer</div>}>
-      {product && (
-        <ul>
-          <li>{product.title}</li>
-          <li>{product.description}</li>
-          <li>{product.price}</li>
-          <li>
-            <img src={product.thumbnail} alt="" />
-          </li>
-        </ul>
-      )}
-    </AppTemplate>
+    <ul>
+      <li>{product.title}</li>
+      <li>{product.description}</li>
+      <li>{product.price}</li>
+      <li>
+        <img src={product.thumbnail} alt="" />
+      </li>
+    </ul>
   );
 };

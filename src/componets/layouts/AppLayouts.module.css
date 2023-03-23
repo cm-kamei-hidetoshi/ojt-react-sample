@@ -1,0 +1,15 @@
+.content {
+  display: flex;
+  flex-direction: row;
+}
+.side_navi {
+  background-color: lemonchiffon;
+  display: flex;
+  flex-direction: column;
+  padding-left: 16px;
+  padding-right: 32px;
+}
+
+.foucs_navi_item {
+  background-color: cadetblue;
+}
