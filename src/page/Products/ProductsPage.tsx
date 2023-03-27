@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { Link } from "react-router-dom";
 import { useProducts } from "./ProductsPage.hooks";
 
 export const ProductsPage: FC = () => {
@@ -6,14 +7,14 @@ export const ProductsPage: FC = () => {
 
   return (
     <>
-      <a href="/products/new">New Product</a>
+      <Link to="/products/new">New Product</Link>
       <ul>
         {products?.map((product) => (
-          <a href={`/products/${product.id}`} key={product.id}>
+          <Link to={`/products/${product.id}`} key={product.id}>
             <li>
               {product.id}:{product.title}
             </li>
-          </a>
+          </Link>
         ))}
       </ul>
     </>
