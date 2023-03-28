@@ -4,7 +4,6 @@ import { RouterProvider } from "react-router-dom";
 import { RecoilRoot } from "recoil";
 import "./App.css";
 import { appRouter } from "./AppRouter";
-import { AppRouter } from "./AppRouter2";
 
 const queryClient = new QueryClient({
   defaultOptions: { queries: { suspense: true } },
@@ -15,8 +14,7 @@ function App() {
     <RecoilRoot>
       <QueryClientProvider client={queryClient}>
         <React.Suspense fallback={<div>Global loading</div>}>
-          {/* <RouterProvider router={appRouter} />; */}
-          <AppRouter />
+          <RouterProvider router={appRouter} />
         </React.Suspense>
       </QueryClientProvider>
     </RecoilRoot>

@@ -6,20 +6,19 @@ import { firebaseApp } from "../utils/firebase";
 
 export const useAuth = () => {
   const [auth, setAuth] = useRecoilState(authState);
+
   useEffect(() => {
     const auth = getAuth(firebaseApp);
-    return onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(auth, (user) => {
       if (!user) {
         setAuth({ type: "not-login" });
         return;
       }
-      if (user) {
-        setAuth({
-          type: "logined",
-          user: { email: user.email ?? "", name: user.displayName ?? "" },
-        });
-        return;
-      }
+      setAuth({
+        type: "logined",
+        user: { email: user.email ?? "", name: user.displayName ?? "" },
+      });
+      return;
     });
   }, []);
 

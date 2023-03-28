@@ -13,13 +13,14 @@ export const AppLayout: FC = () => {
     <AppTemplate header={<Header />} loading={false} footer={<div>Footer</div>}>
       <div className={style.content}>
         <nav className={style.side_navi}>
+          <a href="/products">A: Products</a>
           <Link
             to={"/products"}
             className={
               sideNavi === "PRODUCT" ? style.foucs_navi_item : undefined
             }
           >
-            Products
+            Link: Products
           </Link>
           <Link
             to="/users"

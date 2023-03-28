@@ -5,6 +5,5 @@ import { LoginPage } from "../../page/Login/LoginPage";
 
 export const PrivateLayout: FC = () => {
   const { auth } = useAuth();
-  console.log(auth);
   return auth.type === "logined" ? <Outlet /> : <LoginPage />;
 };
