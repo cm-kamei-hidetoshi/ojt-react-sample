@@ -9,7 +9,7 @@ export const useAuth = () => {
 
   useEffect(() => {
     const auth = getAuth(firebaseApp);
-    onAuthStateChanged(auth, (user) => {
+    return onAuthStateChanged(auth, (user) => {
       if (!user) {
         setAuth({ type: "not-login" });
         return;

@@ -4,6 +4,7 @@ import { useRecoilValue } from "recoil";
 import { sideNaviState } from "../../features/atoms/side-navi-atom";
 import { Header } from "../Header";
 import { AppTemplate } from "../templates/AppTemplate/AppTemplate";
+import { Flex } from "../views/Flex";
 import style from "./AppLayouts.module.css";
 
 export const AppLayout: FC = () => {
@@ -11,7 +12,8 @@ export const AppLayout: FC = () => {
 
   return (
     <AppTemplate header={<Header />} loading={false} footer={<div>Footer</div>}>
-      <div className={style.content}>
+      <Flex className={style.foucs_navi_item}>
+        <Flex as="article">basdfsafsafsadfasasf</Flex>
         <nav className={style.side_navi}>
           <a href="/products">A: Products</a>
           <Link
@@ -34,7 +36,7 @@ export const AppLayout: FC = () => {
             <Outlet />
           </React.Suspense>
         </div>
-      </div>
+      </Flex>
     </AppTemplate>
   );
 };
