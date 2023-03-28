@@ -3,7 +3,7 @@ import { useAuth } from "../../features/hooks/auth.hooks";
 import { AuthUsecase } from "../../features/usecase/AuthUsecase";
 
 export const useLoginPage = () => {
-  const { setAuth } = useAuth();
+  const { setAuth, auth } = useAuth();
   const onClickLogin = useCallback(async () => {
     try {
       const user = await AuthUsecase.login();
@@ -12,5 +12,5 @@ export const useLoginPage = () => {
       console.log(e);
     }
   }, []);
-  return { onClickLogin };
+  return { onClickLogin, isLoading: auth.type === "loading" };
 };

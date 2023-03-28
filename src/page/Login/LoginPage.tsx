@@ -2,11 +2,16 @@ import { FC } from "react";
 import { useLoginPage } from "./LoginPage.hooks";
 
 export const LoginPage: FC = () => {
-  const { onClickLogin } = useLoginPage();
+  const { onClickLogin, isLoading } = useLoginPage();
   return (
-    <div>
-      <h2></h2>LoginPage
-      <button onClick={onClickLogin}>Google Login</button>
-    </div>
+    <>
+      {isLoading && <div>Loading</div>}
+      {!isLoading && (
+        <div>
+          <h2>LoginPage</h2>
+          <button onClick={onClickLogin}>Google Login</button>
+        </div>
+      )}
+    </>
   );
 };
